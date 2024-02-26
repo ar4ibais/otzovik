@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const AddReview = () => {
     return (
         <main className="main">
@@ -19,7 +21,9 @@ const AddReview = () => {
                             </div>
                         </div>
                         <button type="submit" className="btn">Отправить</button>
-                        <button className="right btn pink darken-3">Вернуться назад</button>
+                        <Link to="/">
+                            <button className="right btn pink darken-3">Вернуться назад</button>
+                        </Link>
                     </form>
                 </div>
             </div>

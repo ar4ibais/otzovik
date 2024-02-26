@@ -1,13 +1,23 @@
-const ReviewItem = () => {
+import { Link } from "react-router-dom";
+
+const ReviewItem = ({
+    id,
+    name,
+    rate,
+    date,
+    text
+}) => {
     return (
         <div className="card">
             <div className="card-content">
-                <p>{"I am a very simple card. I am good at containing small bits of information.I am convenient because I require little markup to use effectively.".slice(0, 10) + "..."}</p>
-                <span className="more pink-text accent-1">Читать полностью</span>
+                <p>{`${text}`.slice(0, 10) + '...'}</p>
+                <Link to={`/reviews/${id}`}>
+                    <span className="more pink-text accent-1">Читать полностью</span>
+                </Link>
             </div>
             <div className="card-action">
-                <span>Date: 21.02.2024</span>
-                <span className="right">Author: Rick James</span>
+                <span>Date: {date}</span>
+                <span className="right">Author: {name}</span>
             </div>
         </div>
     );

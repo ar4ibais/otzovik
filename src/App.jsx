@@ -1,3 +1,4 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import AddReview from './pages/AddReview'
@@ -12,9 +13,13 @@ function App() {
   return (
     <>
       <Header />
-      <Home />
-      {/* <Review /> */}
-      {/* <AddReview /> */}
+      <BrowserRouter >
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/reviews/:id' element={<Review />} />
+          <Route path='/reviews/add' element={<AddReview />} />
+        </Routes>
+      </BrowserRouter>
       <Footer />
     </>
   )

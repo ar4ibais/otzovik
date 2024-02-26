@@ -1,20 +1,34 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 const Review = () => {
+    const id = +window.location.href.slice(-2) ? +window.location.href.slice(-2) : +window.location.href.slice(-1)
+    const [item, setItem] = useState({})
+
+
+    useEffect(() => {
+        axios.get(`https://65dcbccfe7edadead7eccbda.mockapi.io/reviews/${id}`)
+            .then(({ data }) => setItem(data))
+    }, [id])
+
     return (
         <main className="main">
             <div className="container">
-                <h3 className="main__title">тестовое приложение - отзыв Rick James</h3>
+                <h3 className="main__title">тестовое приложение - отзыв {item.name}</h3>
                 <div className="card blue-grey darken-1">
                     <div className="card-content white-text">
-                        <span className="card-title">Rick James</span>
-                        <p>I am a very simple card. I am good at containing small bits of information.
-                            I am convenient because I require little markup to use effectively.</p>
+                        <span className="card-title">{item.name}</span>
+                        <p>{item.text}</p>
                     </div>
                     <div className="card-action">
-                        <span className="orange-text darken-1">Дата размещения: 21.02.2024</span>
-                        <span className="orange-text darken-1 right">Оценка: 4</span>
+                        <span className="orange-text darken-1">Дата размещения: {item.date}</span>
+                        <span className="orange-text darken-1 right">Оценка: {item.rate}</span>
                     </div>
                 </div>
-                <button className="btn">Вернуться к списку отзывов</button>
+                <Link to="/">
+                    <button className="btn">Вернуться к списку отзывов</button>
+                </Link>
             </div>
         </main>
     );
