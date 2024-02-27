@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import ReviewItem from "../components/ReviewItem";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Preloader from "../components/Preloader";
 
 
 const Home = () => {
@@ -17,7 +18,7 @@ const Home = () => {
                 <h3 className="main__title">тестовое приложение - список отзывов</h3>
                 <div className="review__items">
                     {
-                        items.map(obj => (
+                        !items.length ? <Preloader /> : items.map(obj => (
                             <ReviewItem key={obj.id} {...obj} />
                         ))
                     }
